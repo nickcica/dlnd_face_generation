@@ -11875,7 +11875,7 @@ Found celeba Data
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0x7fbfac6cd3c8&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x7f3924e89208&gt;</pre>
 </div>
 
 </div>
@@ -12454,7 +12454,7 @@ KHh4eITgiYKHh0cI/x9cEW/+6n6xUQAAAABJRU5ErkJggg==
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0x7fbfac674f60&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x7f3924e31dd8&gt;</pre>
 </div>
 
 </div>
@@ -13699,7 +13699,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">discriminator</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
@@ -13709,13 +13709,14 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param reuse: Boolean if the weights should be reused</span>
 <span class="sd">    :return: Tuple of (tensor output of the discriminator, tensor logits of the discriminator)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
+    <span class="c1"># DONE: Implement Function</span>
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;discriminator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="n">reuse</span><span class="p">):</span>
         <span class="c1"># Hidden layer 1</span>
         <span class="n">h1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span>
                               <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.02</span><span class="p">))</span>
         <span class="n">lrelu1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">h1</span><span class="p">,</span> <span class="n">h1</span><span class="p">)</span>
         <span class="c1">#print (&#39;Layer 1:&#39;, lrelu1.shape)</span>
+        <span class="c1"># 14x14x64 now</span>
         
         <span class="c1"># Hidden Layer 2</span>
         <span class="n">h2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">lrelu1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span>
@@ -13723,6 +13724,7 @@ Default GPU Device: /gpu:0
         <span class="n">bn2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">lrelu2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">bn2</span><span class="p">,</span> <span class="n">bn2</span><span class="p">)</span>
         <span class="c1">#print (&#39;Layer 2:&#39;, lrelu2.shape)</span>
+        <span class="c1"># 7x7x128 now</span>
         
         <span class="c1"># Hidden Layer 3</span>
         <span class="n">h3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">lrelu2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;SAME&quot;</span><span class="p">,</span> 
@@ -13730,6 +13732,7 @@ Default GPU Device: /gpu:0
         <span class="n">bn3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">h3</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">lrelu3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">bn3</span><span class="p">,</span> <span class="n">bn3</span><span class="p">)</span>
         <span class="c1">#print (&#39;Layer 3:&#39;, lrelu3.shape)</span>
+        <span class="c1">#4x4x256 now</span>
         
         <span class="n">flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">lrelu3</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">256</span><span class="p">))</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -13788,7 +13791,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param is_train: Boolean if generator is being used for training</span>
 <span class="sd">    :return: The tensor output of the generator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function </span>
+    <span class="c1"># DONE: Implement Function </span>
         
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;generator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="ow">not</span> <span class="n">is_train</span><span class="p">):</span>
         <span class="c1"># First fully connected layer</span>
@@ -13885,7 +13888,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param out_channel_dim: The number of channels in the output image</span>
 <span class="sd">    :return: A tuple of (discriminator loss, generator loss)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
+    <span class="c1"># DONE: Implement Function</span>
     <span class="n">smooth</span> <span class="o">=</span> <span class="mf">0.1</span>
     
     <span class="c1"># Generator network </span>
@@ -13961,7 +13964,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param beta1: The exponential decay rate for the 1st moment in the optimizer</span>
 <span class="sd">    :return: A tuple of (discriminator training operation, generator training operation)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Implement Function</span>
+    <span class="c1"># DONE: Implement Function</span>
     
     <span class="c1"># Get the trainable_variables, split into G and D parts</span>
     <span class="n">t_vars</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">()</span>
@@ -14086,7 +14089,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param data_shape: Shape of the data</span>
 <span class="sd">    :param data_image_mode: The image mode to use for images (&quot;RGB&quot; or &quot;L&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Build Model   </span>
+    <span class="c1"># DONE: Build Model   </span>
     
     <span class="c1"># Set the image width, height, and image channels</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">image_width</span><span class="p">,</span> <span class="n">image_height</span><span class="p">,</span> <span class="n">image_channels</span> <span class="o">=</span> <span class="n">data_shape</span>
