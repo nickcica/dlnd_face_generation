@@ -1,6 +1,9 @@
-# DLND Image Generation
+# Deep Learning Nanodegree - Image Generation
 
-In this project, I'll be generating never before seen faces using GANS.
+Generated never before seen faces from a dataset of Celebrity Faces.
+
+- Implemented a Deep Convolution General Adversarial Network (DCGAN) using Python and Tensorflow.
+- Trained the Discriminator and Generator with a loss of 1.09 and 0.76 respectively
 
 ## Installation
 Clone the Github repository and use condo to install the dependencies 
