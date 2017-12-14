@@ -16,7 +16,7 @@ $ jupyter notebook
 * Python 3
 * TensorFlow 1.0
 * Numpy
-* Matplotlib
+* Matplotlib 2.0.2
 
 ## License
 The contents of this repository are covered under the [MIT License](https://github.com/TokyoIndex/dlnd_face_generation/blob/master/LICENSE).
